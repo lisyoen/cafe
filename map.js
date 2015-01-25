@@ -1,5 +1,5 @@
 Map = function(){
-	this.map = new Array();
+	this.map = [];
 };
 Map.prototype = {
 	put : function(key, value){
@@ -18,7 +18,7 @@ Map.prototype = {
 		return false;
 	},
 	isEmpty : function(key){
-	    return (this.size() == 0);
+		return (this.size() === 0);
 	},
 	clear : function(){
 		for(var prop in this.map){

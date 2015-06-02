@@ -66,7 +66,7 @@ function OrderBoard() {
     var handlers = {};
     this.on = function(name, handler) {
         handlers[name] = handler;
-    }
+    };
 
     this.emit = function(name, param) {
         var h = handlers[name];
@@ -85,7 +85,7 @@ function OrderBoard() {
     // This function returns items reference, but you should not use to modify.
     this.getItem = function(name) {
         return this.menu[name];
-    }
+    };
 
     this.orderItem = function(name) {
         var item = this.menu[name];
@@ -93,7 +93,7 @@ function OrderBoard() {
         this.menuCount++;
         order.count++;
         this.ordersCount++;
-    }
+    };
 
     this.cancelItem = function(name) {
         var item = this.menu[name];
@@ -106,7 +106,7 @@ function OrderBoard() {
             order.count--;
             this.ordersCount--;
         }
-    }
+    };
 }
 
 var ob = new OrderBoard();
@@ -124,7 +124,7 @@ $(document).on("pageinit", "#page1", function(e, u) {
             tag.count.css({visibility: "visible"}).text(item.count);
 
             console.log(item.name);
-        }
+        };
     }
 
     function getCancelHandler(name, tag) {
@@ -142,7 +142,7 @@ $(document).on("pageinit", "#page1", function(e, u) {
             }
 
             console.log(item.name);
-        }
+        };
     }
 
     for (var i in ob.menu) {

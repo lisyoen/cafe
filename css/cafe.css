@@ -1,3 +1,7 @@
+div.container {
+    padding: 0;
+}
+
 .table > tbody > tr > td.menu-category {
     background-color: black;
     color: white;
@@ -6,7 +10,7 @@
 }
 
 .dropdown-menu > li > div.order-wrapper {
-    padding: 0px 10px 0px 10px;
+    padding: 0 10px 0 10px;
 }
 
 .title {
@@ -15,10 +19,11 @@
 
 .titlebar {
     background-color:#DDDDDD;
-    height: 34px;
+    padding: 10px 5px 10px 5px;
 }
 
 .logo {
+    margin-top: -7px;
     width: 32px;
     height: 22px;
 }

@@ -1,5 +1,8 @@
-{
-    "menu": [
+[{
+    "menuVersion" : "1",
+    "cafeName": "S-Core Cafe",
+    "cafeIcon": "",
+    "menuList": [
         "-COFFEE",
         "아메리카노 (Hot)",
         "아메리카노 (Ice)",
@@ -49,4 +52,4 @@
         "레몬 아이스티",
         "유자 에이드"
     ]
-}
+}]

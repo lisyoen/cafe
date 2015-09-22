@@ -1,168 +1,116 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="./img/favicon.png">
-    <link rel="apple-touch-icon" href="./img/cafe-icon.png">
-    <link rel="apple-touch-startup-image" href="./img/cafe-startup-image.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="./img/favicon.png">
+        <link rel="apple-touch-icon" href="./img/cafe-icon.png">
+        <link rel="apple-touch-startup-image" href="./img/cafe-startup-image.png">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+-->
 
-    <title>S-Core Cafe</title>
+        <title>S-Core Cafe</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/cafe.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="./css/cafe.css">
 
-    <!-- Bootstrap core CSS -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/bootstrap-theme.css">
+        <!-- Bootstrap core CSS -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" href="./css/bootstrap-theme.css">
+    </head>
 
-</head>
+    <body>
+        <header>
+            <section class="container">
+                <div class="titlebar">
+                    <img src="img/cafe-icon-44.png" alt="" class="logo">
+                    <span id="cafe-name" class="title">
+                        <script id="cafe-name-template" type="text/x-handlebars-template">
+        {{cafeName}}
+                        </script>
+                    </span>
+                    <div class="btn-group pull-right">
+                        <button id="orders-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">Orders <span class="caret"></span>
+                        </button>
+                        <ul id="order-list" class="dropdown-menu" role="menu">
+                            <li>
+                                <div class="order-wrapper">아메리카노(Ice)<span class="label label-info pull-right"> 1 </span>
+                                </div>
+                            </li>
 
-<body>
-    <div class="container ">
-        <div class="titlebar">
-            <span class="title"><img src="img/cafe-icon-44.png" alt="" class="logo">
-                  S-Core Cafe
-            </span>
-            <div class="btn-group pull-right">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Orders <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <div class="order-wrapper">카페모카(Ice)<span class="label label-info pull-right"> 2 </span>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="order-wrapper">Total Orders <span class="label label-info pull-right"> 3 </span>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="order-wrapper">
+                                    <button id="reset-orders-button" type="button" class="btn btn-danger btn-block">
+                                        Reset Orders
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </header>
+        <article class="container">
+            <section>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menu-table">
+                        <script id="catalog-template" type="text/x-handlebars-template">
+        {{#this}}
+        {{#if isCategory}}
+        <tr>
+            <td data-index="{{@index}}" colspan="2" class="menu-category">{{name}}</td>
+                            </tr>
+        {{else}}
+        <tr>
+            <td data-index="{{@index}}" class="menu-name">{{name}}</td>
+            <td class="menu-count">{{count}}</td>
+                            </tr>
+        {{/if}}
+        {{/this}}
+                        </script>
+                    </tbody>
+                </table>
 
-                    <li>
-                        <div class="order-wrapper">아메리카노(Ice)<span class="label label-info pull-right"> 1 </span>
-                        </div>
-                    </li>
-
-
-                    <li>
-                        <div class="order-wrapper">카페모카(Ice)<span class="label label-info pull-right"> 2 </span>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="order-wrapper">Total Orders <span class="label label-info pull-right"> 3 </span>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="order-wrapper">
-                            <button type="button" class="btn btn-danger btn-block">
-                                Reset Orders
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Item</th>
-                    <th>Qty</th>
-                </tr>
-            </thead>
-            <tr>
-                <td colspan="3" class="menu-category">COFFEE</td>
-            </tr>
-            <tr>
-                <td>C01</td>
-                <td>아메리카노(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>C02</td>
-                <td>아메리카노(Ice)</td>
-                <td><span class="label label-info"> 1 </span>
-                </td>
-            </tr>
-            <tr>
-                <td>C03</td>
-                <td>카페라테(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>C04</td>
-                <td>카페라테(Ice)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>C05</td>
-                <td>카페모카(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>C06</td>
-                <td>카페모카(Ice)</td>
-                <td><span class="label label-info"> 2 </span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="menu-category">TEA</td>
-            </tr>
-            <tr>
-                <td>T01</td>
-                <td>얼그레이(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T02</td>
-                <td>얼그레이(Ice)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T03</td>
-                <td>페퍼민트(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T04</td>
-                <td>페퍼민트(Ice)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="3" class="menu-category">SMOOTHE</td>
-            </tr>
-            <tr>
-                <td>T01</td>
-                <td>얼그레이(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T02</td>
-                <td>얼그레이(Ice)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T03</td>
-                <td>페퍼민트(Hot)</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>T04</td>
-                <td>페퍼민트(Ice)</td>
-                <td></td>
-            </tr>
-        </table>
-    </div>
-    <!-- Bootstrap core JavaScript
-================================================== -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/holder.js"></script>
-</body>
+            </section>
+        </article>
+        <footer>
+            <section class="container">
+                <p>
+                    <a href="https://github.com/lisyoen/cafe/issues">Contact me</a>
+                </p>
+            </section>
+        </footer>
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./bower_components/handlebars/handlebars.min.js"></script>
+        <script src="./js/ba-tiny-pubsub.js"></script>
+        <script src="./js/Class.js"></script>
+        <script src="./bower_components/requirejs/require.js" data-main="./js/main"></script>
+    </body>
 
 </html>
 
